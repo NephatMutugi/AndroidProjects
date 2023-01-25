@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_admin_web_view.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_agent_code.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_agent_enter_email.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_agent_item_click.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_agent_password.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_auth_agents.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_choose_action.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_code.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_help.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_house_details.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_login_as_agent.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_main.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_password.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_rate_agent.xml" value="0.22" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/activity_register.xml" value="0.14130434782608695" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/fragment_alerts.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/fragment_feeds.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/fragment_map.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/fragment_more.xml" value="0.22" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/fragment_saved.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/house_list.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/houses_item.xml" value="0.15806159420289856" />
+        <entry key="..\:/Android/TruHouse/app/src/main/res/layout/recycler_row.xml" value="0.15806159420289856" />
+      </map>
+    </option>
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+  <component name="SwUserDefinedSpecifications">
+    <option name="specTypeByUrl">
+      <map />
+    </option>
+  </component>
+</project>

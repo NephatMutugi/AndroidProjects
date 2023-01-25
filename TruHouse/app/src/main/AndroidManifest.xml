@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nephat.truhouse">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".admin.AdminWebViewActivity"></activity>
+        <activity
+            android:name=".HelpActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.AgentPasswordActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.AgentCodeActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.AgentEnterEmailActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.PasswordActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.CodeActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".resetPassword.ResetPasswordActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity android:name=".RateAgentActivity" />
+        <activity android:name=".HouseDetailsActivity" />
+        <activity android:name=".AgentItemClick" />
+        <activity android:name=".ViewUploadedHousesActivity" />
+        <activity android:name=".ChooseActionActivity" />
+        <activity
+            android:name=".authentication.VerifyAgentActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".authentication.LoginAsAgentActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity android:name=".authentication.AuthAgentsActivity" />
+        <activity
+            android:name=".UploadHousesActivity"
+            android:theme="@style/Theme.MaterialComponents.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".authentication.RegisterActivity"
+            android:theme="@style/Theme.MaterialComponents.Light" />
+        <activity
+            android:name=".authentication.SignInActivity"
+            android:theme="@style/Theme.MaterialComponents.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps_api_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+    </application>
+
+</manifest>
