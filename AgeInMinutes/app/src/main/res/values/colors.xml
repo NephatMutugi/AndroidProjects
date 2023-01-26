@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="selected_item_color">#00BFA5</color>
     <color name="pressed_item_color">#4CAF50</color>
-    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorBackground">#add8e6</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorText">#000000</color>
+    <color name="tiffanyBlue">#0ABAB5</color>
+    <color name="lightBlue">#add8e6</color>
 </resources>

@@ -1,9 +1,12 @@
 package com.neph.ageinminutes.activities
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.neph.ageinminutes.adapters.ExpensesAdapter
 import com.neph.ageinminutes.R
 import com.neph.ageinminutes.models.Expense
@@ -19,6 +22,9 @@ class ViewExpensesActivity : AppCompatActivity() {
 
         // Set up the recycler view
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.setBackgroundColor(Color.WHITE)
         val expenses = getExpenses()
 
         recyclerView.adapter = ExpensesAdapter(expenses)
