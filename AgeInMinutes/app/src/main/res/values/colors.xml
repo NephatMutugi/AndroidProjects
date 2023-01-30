@@ -10,6 +10,10 @@
     <color name="selected_item_color">#00BFA5</color>
     <color name="pressed_item_color">#4CAF50</color>
     <color name="colorBackground">#add8e6</color>
+    <color name="backgroundColor">#FEF1E0</color>
+    <color name="textColor">#844046</color>
+    <color name="ageTextBackgroundColor">#C846DCE0</color>
+    <color name="lightGreyTextColor">#B7B7B7</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorText">#000000</color>
     <color name="tiffanyBlue">#0ABAB5</color>
