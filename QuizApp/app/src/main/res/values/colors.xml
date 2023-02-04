@@ -10,4 +10,8 @@
     <color name="light_blue">#7A75EC</color>
     <color name="colorPrimary">#FF9013FE</color>
     <color name="colorPrimaryDark">#FF6A1B9A</color>
+    <color name="greyText">#363A43</color>
+    <color name="hintText">#6C788E</color>
+
+
 </resources>
