@@ -8,4 +8,6 @@
     <string name="flag_question">What country does this flag belong to?</string>
     <string name="content_desc_img">image</string>
     <string name="submit">SUBMIT</string>
+    <string name="finish">FINISH</string>
+    <string name="submit_caps">SUBMIT</string>
 </resources>
