@@ -48,7 +48,7 @@
         tools:text="Your score is 9 out of 10"/>
 
     <Button
-        android:id="@+id/btn_finish"
+        android:id="@+id/btnFinish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
