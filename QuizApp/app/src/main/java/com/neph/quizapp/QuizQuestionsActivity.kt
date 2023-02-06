@@ -66,7 +66,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     // Set questions to the UI components
 
     private fun setQuestion() {
-        val question: Question = questionsList!![currentPosition - 1]
+        val question: Question = questionsList!![currentPosition -1]
         defaultOptionsView()
 
         if (currentPosition == questionsList!!.size){

@@ -3,7 +3,7 @@
     <string name="string_app_name">Fun With Flags!</string>
     <string name="welcome_string">Welcome</string>
     <string name="your_name_string">Please enter your name.</string>
-    <string name="name_string">Name</string>
+    <string name="name_string">eg. John</string>
     <string name="start_string">Start</string>
     <string name="flag_question">What country does this flag belong to?</string>
     <string name="content_desc_img">image</string>
