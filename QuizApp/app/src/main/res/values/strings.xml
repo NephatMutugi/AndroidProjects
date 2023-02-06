@@ -10,4 +10,5 @@
     <string name="submit">SUBMIT</string>
     <string name="finish">FINISH</string>
     <string name="submit_caps">SUBMIT</string>
+    <string name="next_question">GO TO NEXT QUESTION</string>
 </resources>
