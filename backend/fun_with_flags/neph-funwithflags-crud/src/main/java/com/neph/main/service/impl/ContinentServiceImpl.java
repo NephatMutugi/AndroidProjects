@@ -32,54 +32,61 @@ public class ContinentServiceImpl implements ContinentService {
     }
 
     @Override
-    public ResponseEntity<Continent> findContinent(RequestPayload requestPayload) {
+    public ResponseEntity<?> findContinent(RequestPayload requestPayload) {
 
         String businessKey = requestPayload.getBusinessKey();
         String businessKeyValue = requestPayload.getBusinessKeyValue();
 
         if (businessKey.equals(Constants.NAME.getName())) {
             Continent continent = continentRepository.findContinentByContinentName(businessKeyValue);
-            if (!(continent.getContinentName().isEmpty())) {
+            if (continent != null) {
                 return new ResponseEntity<>(continent, HttpStatus.OK);
             } else {
                 log.error("NO CONTINENT WAS FOUND WITH NAME {}", businessKeyValue);
-                return new ResponseEntity<>(continent, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponsePayload("404","NO CONTINENT WAS FOUND WITH NAME: " +businessKeyValue), HttpStatus.NOT_FOUND);
             }
 
         } else if (businessKey.equals(Constants.ABBREVIATION.getName())) {
             Continent continent = continentRepository.findContinentByAbbreviation(businessKeyValue);
-            if (!(continent.getAbbreviation().isEmpty())) {
+            if (continent != null) {
                 return new ResponseEntity<>(continent, HttpStatus.OK);
             } else {
                 log.error("NO CONTINENT WAS FOUND WITH ABBREVIATION {}", businessKeyValue);
-                return new ResponseEntity<>(continent, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponsePayload("404","NO CONTINENT WAS FOUND WITH Abbreviation: " +businessKeyValue), HttpStatus.NOT_FOUND);
             }
         }
 
-        return new ResponseEntity<>(new Continent(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ResponsePayload("404","NO CONTINENT WAS FOUND WITH KEY: " + businessKeyValue), HttpStatus.NOT_FOUND);
     }
 
 
     @Override
     public ResponseEntity<ResponsePayload> save(Continent continent) {
-        Continent savedContinent = continentRepository.save(continent);
         ResponsePayload responsePayload = new ResponsePayload();
         String message;
-
-        if (savedContinent.getId()!=null){
-
-            message = "Continent created with ID: " +
-                    savedContinent.getId() +
-                    " and Name:" +
-                    savedContinent.getContinentName();
+        try {
+            Continent savedContinent = continentRepository.save(continent);
+            if (savedContinent.getId()!=null){
+                message = "Continent created with ID: " +
+                        savedContinent.getId() +
+                        " and Name:" +
+                        savedContinent.getContinentName();
+                responsePayload.setMessage(message);
+                responsePayload.setStatus("200");
+                log.info("ADD CONTINENT SUCCESS: {}", savedContinent.getContinentName());
+            } else {
+                message = "Failed to create continent " + continent.getContinentName();
+                responsePayload.setMessage(message);
+                log.info("ADD CONTINENT FAILURE: {}", continent.getContinentName());
+            }
+        } catch (Exception ex){
+            log.error("ERROR {}", ex.getMessage());
+            message = "Record already exists: " + continent.getContinentName();
             responsePayload.setMessage(message);
-            responsePayload.setStatus("200");
-            return new ResponseEntity<>(responsePayload, HttpStatus.OK);
-        } else {
-            message = "Failed to create continent " + continent.getContinentName();
-            responsePayload.setMessage(message);
-            return new ResponseEntity<>(responsePayload, HttpStatus.CONFLICT);
+            responsePayload.setStatus("409");
         }
+        return new ResponseEntity<>(responsePayload, HttpStatus.OK);
+
     }
 
     @Override

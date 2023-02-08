@@ -27,7 +27,7 @@ public class ContinentController {
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<Continent> findContinent(@RequestBody RequestPayload requestPayload){
+    public ResponseEntity<?> findContinent(@RequestBody RequestPayload requestPayload){
         return continentService.findContinent(requestPayload);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
  **/
 public interface ContinentService {
     ResponseEntity<List<Continent>> findAll();
-    ResponseEntity<Continent> findContinent(RequestPayload requestPayload);
+    ResponseEntity<?> findContinent(RequestPayload requestPayload);
     ResponseEntity<ResponsePayload> save(Continent continent);
 
     ResponseEntity<?> delete(String name);
