@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @ Author NMuchiri
  **/
-@RequestMapping("api/v1/continents")
+@RequestMapping("/api/v1/continents")
 @RestController
 public class ContinentController {
     private final ContinentService continentService;
@@ -21,17 +21,17 @@ public class ContinentController {
         this.continentService = continentService;
     }
 
-    @GetMapping(value = "all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = {"application/json"})
     public ResponseEntity<List<Continent>> findAll(){
         return continentService.findAll();
     }
 
-    @GetMapping()
+    @RequestMapping(value = "/find", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<Continent> findContinent(@RequestBody RequestPayload requestPayload){
         return continentService.findContinent(requestPayload);
     }
 
-    @PostMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<ResponsePayload> save(@RequestBody Continent continent){
         return continentService.save(continent);
     }
