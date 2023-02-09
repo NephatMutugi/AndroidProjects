@@ -21,6 +21,7 @@ public class Flag {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "country_id", nullable = false)
+    @ToString.Exclude
     private Country country;
 
 }

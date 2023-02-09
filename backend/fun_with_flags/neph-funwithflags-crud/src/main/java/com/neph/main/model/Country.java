@@ -21,6 +21,7 @@ public class Country {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "continent_id", nullable = false)
+    @ToString.Exclude
     private Continent continent;
 
 }
