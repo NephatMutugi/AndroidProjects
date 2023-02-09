@@ -70,7 +70,7 @@ public class CountryServiceImpl implements CountryService {
             }
         } else {
             return new ResponseEntity<>(new ResponsePayload("400",
-                    "Please use businessKey \"Query\" to query a country"), HttpStatus.OK);
+                    "Please use businessKey {Query} to query a country"), HttpStatus.OK);
         }
 
     }
@@ -82,19 +82,20 @@ public class CountryServiceImpl implements CountryService {
         Continent continent = continentRepository.findContinentByContinentName(continentName);
 
         if (continent != null) {
-            countryRepository.save(new Country(countryName, continent));
+            return saveCountry(countryName, continent);
         } else {
             continent = continentRepository.findContinentByAbbreviation(continentName);
             if (continent != null) {
-                countryRepository.save(new Country(countryName, continent));
+                return saveCountry(countryName, continent);
             } else {
                 return new ResponseEntity<>(new ResponsePayload("400",
                         "Continents: " + continentsList()), HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>(new ResponsePayload("400",
-                "Failed to create country"), HttpStatus.OK);
+
     }
+
+
 
     @Override
     public ResponseEntity<?> delete(String name) {
@@ -112,6 +113,28 @@ public class CountryServiceImpl implements CountryService {
         String continents = continentBuilder.toString().trim();
         return continents.replaceAll(",&", "");
 
+    }
+
+    private ResponseEntity<ResponsePayload> saveCountry(String name, Continent continent){
+        try {
+            Country country = countryRepository.save(new Country(name, continent));
+
+            if (country.getId()!=null){
+                return new ResponseEntity<>(new ResponsePayload(
+                        "200",
+                        "Country: " + name + " created in continent: " + continent.getContinentName()
+                ), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ResponsePayload(
+                        "400",
+                        "Failed to create country: " + name
+                ), HttpStatus.OK);
+            }
+        } catch (Exception e){
+            log.error("CREATE COUNTRY {}: {}", name, e.getMessage());
+            return new ResponseEntity<>(new ResponsePayload("400",
+                    e.getMessage()), HttpStatus.OK);
+        }
     }
 
 }

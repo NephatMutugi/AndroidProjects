@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Table(name = "flag")
 public class Flag {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
