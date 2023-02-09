@@ -1,6 +1,6 @@
 package com.neph.main.service;
 
-import com.neph.main.model.Country;
+import com.neph.main.entity.Country;
 import com.neph.main.model.RequestPayload;
 import com.neph.main.model.ResponsePayload;
 import org.springframework.http.ResponseEntity;

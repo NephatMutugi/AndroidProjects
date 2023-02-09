@@ -1,4 +1,4 @@
-package com.neph.main.model;
+package com.neph.main.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,18 +10,18 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "flag")
-public class Flag {
+@Table(name = "country")
+public class Country {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "image_url", nullable = false)
-    private String imageUrl;
+    @Column(name = "country_name", nullable = false)
+    private String countryName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "country_id", nullable = false)
+    @JoinColumn(name = "continent_id", nullable = false)
     @ToString.Exclude
-    private Country country;
+    private Continent continent;
 
 }

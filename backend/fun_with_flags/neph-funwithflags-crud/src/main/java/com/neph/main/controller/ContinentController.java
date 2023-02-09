@@ -1,6 +1,6 @@
 package com.neph.main.controller;
 
-import com.neph.main.model.Continent;
+import com.neph.main.entity.Continent;
 import com.neph.main.model.RequestPayload;
 import com.neph.main.model.ResponsePayload;
 import com.neph.main.service.ContinentService;

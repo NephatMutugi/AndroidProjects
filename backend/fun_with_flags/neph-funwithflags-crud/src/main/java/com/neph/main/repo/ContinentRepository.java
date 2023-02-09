@@ -1,6 +1,6 @@
 package com.neph.main.repo;
 
-import com.neph.main.model.Continent;
+import com.neph.main.entity.Continent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

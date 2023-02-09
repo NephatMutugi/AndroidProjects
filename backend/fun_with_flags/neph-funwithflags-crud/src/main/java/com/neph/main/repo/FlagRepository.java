@@ -1,6 +1,6 @@
 package com.neph.main.repo;
 
-import com.neph.main.model.Flag;
+import com.neph.main.entity.Flag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

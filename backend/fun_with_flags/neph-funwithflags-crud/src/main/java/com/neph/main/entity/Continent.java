@@ -1,4 +1,4 @@
-package com.neph.main.model;
+package com.neph.main.entity;
 
 import lombok.Getter;
 import lombok.Setter;
