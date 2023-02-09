@@ -11,6 +11,7 @@ import java.util.List;
  * @ Author NMuchiri
  **/
 public interface CountryService {
+    ResponseEntity<List<Country>> findAllCountries();
     ResponseEntity<List<Country>> findAllInContinent(RequestPayload requestPayload);
     ResponseEntity<?> findCountry(RequestPayload requestPayload);
     ResponseEntity<ResponsePayload> save(RequestPayload requestPayload);

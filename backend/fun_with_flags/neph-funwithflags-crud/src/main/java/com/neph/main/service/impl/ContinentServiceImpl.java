@@ -37,7 +37,7 @@ public class ContinentServiceImpl implements ContinentService {
         String businessKey = requestPayload.getBusinessKey();
         String businessKeyValue = requestPayload.getBusinessKeyValue();
 
-        if (businessKey.equals(Constants.NAME.getName())) {
+        if (businessKey.equalsIgnoreCase(Constants.NAME.getName())) {
             Continent continent = continentRepository.findContinentByContinentName(businessKeyValue);
             if (continent != null) {
                 return new ResponseEntity<>(continent, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class ContinentServiceImpl implements ContinentService {
                 return new ResponseEntity<>(new ResponsePayload("404","NO CONTINENT WAS FOUND WITH NAME: " +businessKeyValue), HttpStatus.NOT_FOUND);
             }
 
-        } else if (businessKey.equals(Constants.ABBREVIATION.getName())) {
+        } else if (businessKey.equalsIgnoreCase(Constants.ABBREVIATION.getName())) {
             Continent continent = continentRepository.findContinentByAbbreviation(businessKeyValue);
             if (continent != null) {
                 return new ResponseEntity<>(continent, HttpStatus.OK);

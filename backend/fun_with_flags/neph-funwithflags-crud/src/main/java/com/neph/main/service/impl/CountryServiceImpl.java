@@ -7,11 +7,13 @@ import com.neph.main.model.ResponsePayload;
 import com.neph.main.repo.ContinentRepository;
 import com.neph.main.repo.CountryRepository;
 import com.neph.main.service.CountryService;
+import com.neph.main.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,8 +32,27 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
+    public ResponseEntity<List<Country>> findAllCountries() {
+        List<Country> countryList = countryRepository.findAll();
+        log.info("Total Number of Countries: {}", countryList.size());
+        return new ResponseEntity<>(countryList, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<List<Country>> findAllInContinent(RequestPayload requestPayload) {
-        return new ResponseEntity<>(countryRepository.findAll(), HttpStatus.OK);
+        List<Country> countryList = new ArrayList<>();
+        if ((requestPayload.getBusinessKey().equalsIgnoreCase(Constants.NAME.getName()))){
+            Continent continent = continentRepository.findContinentByContinentName(requestPayload.getBusinessKeyValue());
+            countryList = countryRepository.findCountriesByContinent(continent);
+        } else if ((requestPayload.getBusinessKey().equalsIgnoreCase(Constants.ABBREVIATION.getName()))) {
+            Continent continent = continentRepository.findContinentByAbbreviation(requestPayload.getBusinessKeyValue());
+            countryList = countryRepository.findCountriesByContinent(continent);
+        }
+
+        if (countryList.size() == 0){
+            log.error("FAILED TO GET ANY COUNTRIES IN CONTINENT {}", requestPayload.getBusinessKeyValue());
+        }
+        return new ResponseEntity<>(countryList, HttpStatus.OK);
     }
 
     @Override
@@ -52,7 +73,6 @@ public class CountryServiceImpl implements CountryService {
                     "Please use businessKey \"Query\" to query a country"), HttpStatus.OK);
         }
 
-
     }
 
     @Override
@@ -61,11 +81,11 @@ public class CountryServiceImpl implements CountryService {
         String countryName = requestPayload.getBusinessKeyValue();
         Continent continent = continentRepository.findContinentByContinentName(continentName);
 
-        if (continent != null){
+        if (continent != null) {
             countryRepository.save(new Country(countryName, continent));
         } else {
             continent = continentRepository.findContinentByAbbreviation(continentName);
-            if (continent != null){
+            if (continent != null) {
                 countryRepository.save(new Country(countryName, continent));
             } else {
                 return new ResponseEntity<>(new ResponsePayload("400",
@@ -82,16 +102,16 @@ public class CountryServiceImpl implements CountryService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private String continentsList(){
+    private String continentsList() {
         List<Continent> continentList = continentRepository.findAll();
         StringBuilder continentBuilder = new StringBuilder();
-        for (Continent continent : continentList){
+        for (Continent continent : continentList) {
             String continentName = continent.getContinentName();
             continentBuilder.append(continentName).append(", ");
         }
         String continents = continentBuilder.toString().trim();
-        continents = continents.replaceAll(",&","");
-        return continents;
+        return continents.replaceAll(",&", "");
+
     }
 
 }
