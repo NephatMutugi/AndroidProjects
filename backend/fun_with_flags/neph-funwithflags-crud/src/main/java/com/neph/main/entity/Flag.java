@@ -1,5 +1,6 @@
 package com.neph.main.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,6 +24,7 @@ public class Flag {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "country_id", nullable = false)
     @ToString.Exclude
+    @JsonIgnore
     private Country country;
 
 }

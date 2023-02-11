@@ -1,5 +1,6 @@
 package com.neph.main.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,9 +29,11 @@ public class Country implements Serializable {
     @Column(name = "country_name", nullable = false)
     private String countryName;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "continent_id", nullable = false)
     @ToString.Exclude
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     private Continent continent;
 
 }
