@@ -62,7 +62,8 @@ public class FlagServiceImpl implements FlagService {
 
 
     @Override
-    public ResponseEntity<ResponsePayload> deleteFlag(String countryName) {
+    public ResponseEntity<ResponsePayload> deleteFlag(RequestPayload requestPayload) {
+        String countryName = requestPayload.getBusinessKeyValue();
 
         try {
             Country country = countryRepository.findCountryByCountryName(countryName);
