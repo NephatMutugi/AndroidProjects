@@ -7,6 +7,7 @@ import com.neph.main.model.ResponsePayload;
 import com.neph.main.repo.CountryRepository;
 import com.neph.main.repo.FlagRepository;
 import com.neph.main.service.FlagService;
+import com.neph.main.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,18 +32,31 @@ public class FlagServiceImpl implements FlagService {
 
     @Override
     public ResponseEntity<List<Flag>> findAllFlags() {
-        return new ResponseEntity<>(flagRepository.findAll(), HttpStatus.OK);
+        List<Flag> flagList = flagRepository.findAll();
+        log.info("FOUND:: {} flags", flagList.size());
+        return new ResponseEntity<>(flagList, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Flag> findFlagByCountry(RequestPayload requestPayload) {
+    public ResponseEntity<?> findFlagByCountry(RequestPayload requestPayload) {
         String countryName = requestPayload.getBusinessKeyValue();
-        return new ResponseEntity<>(flagRepository.findFlagByCountryCountryName(countryName), HttpStatus.OK);
+        Flag flag = flagRepository.findFlagByCountryCountryName(countryName);
+        log.info("findFlagByCountry");
+        log.info("REQUEST: {}", Utils.objectToJson(requestPayload));
+        if (flag != null){
+            log.info("RESPONSE: {}", Utils.objectToJson(flag));
+            return new ResponseEntity<>(flag, HttpStatus.OK);
+        } else {
+            log.error("RESPONSE: Unable to find {} flag", requestPayload.getBusinessKeyValue());
+            return new ResponseEntity<>(new ResponsePayload("400", countryName + " not among the countries added"), HttpStatus.OK);
+        }
     }
 
     @Override
     public ResponseEntity<List<Flag>> findFlagsInContinent(RequestPayload requestPayload) {
-        return new ResponseEntity<>(flagRepository.findFlagsByContinent(requestPayload.getBusinessKeyValue()), HttpStatus.OK);
+        List<Flag> flagList = flagRepository.findFlagsByContinent(requestPayload.getBusinessKeyValue());
+        log.info("THERE ARE {} FLAGS IN {}", flagList.size(), requestPayload.getBusinessKeyValue());
+        return new ResponseEntity<>(flagList, HttpStatus.OK);
     }
 
     @Override
@@ -80,7 +94,7 @@ public class FlagServiceImpl implements FlagService {
     private ResponseEntity<ResponsePayload> saveFlag(String imageUrl, Country country) {
         try {
             Flag flag = flagRepository.save(new Flag(imageUrl, country));
-
+            log.info("CREATED FLAG: {}", Utils.objectToJson(flag));
             if (flag.getId() != null) {
                 return new ResponseEntity<>(new ResponsePayload(
                         "200",

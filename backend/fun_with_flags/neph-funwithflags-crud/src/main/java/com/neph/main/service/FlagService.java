@@ -13,7 +13,7 @@ import java.util.List;
 public interface FlagService {
 
     ResponseEntity<List<Flag>> findAllFlags();
-    ResponseEntity<Flag> findFlagByCountry(RequestPayload requestPayload);
+    ResponseEntity<?> findFlagByCountry(RequestPayload requestPayload);
     ResponseEntity<List<Flag>> findFlagsInContinent(RequestPayload requestPayload);
     ResponseEntity<ResponsePayload> saveFlag(RequestPayload requestPayload);
     ResponseEntity<ResponsePayload> deleteFlag(RequestPayload requestPayload);
