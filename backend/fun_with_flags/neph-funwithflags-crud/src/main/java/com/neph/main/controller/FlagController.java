@@ -33,7 +33,7 @@ public class FlagController {
     }
 
     @PostMapping(value = "/country", produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<Flag> findFlagByCountry(@RequestBody RequestPayload requestPayload){
+    public ResponseEntity<?> findFlagByCountry(@RequestBody RequestPayload requestPayload){
         return flagService.findFlagByCountry(requestPayload);
     }
 
