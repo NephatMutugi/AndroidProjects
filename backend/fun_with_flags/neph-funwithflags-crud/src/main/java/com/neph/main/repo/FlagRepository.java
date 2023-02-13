@@ -18,5 +18,5 @@ public interface FlagRepository extends JpaRepository<Flag, Integer> {
     @Query("SELECT F FROM Flag F INNER JOIN F.country C INNER JOIN C.continent C2 WHERE C2.continentName=:continentName")
     List<Flag> findFlagsByContinent(@Param("continentName") String continentName);
 
-    void deleteFlagByCountryContaining(Country country);
+    void deleteFlagByCountry(Country country);
 }

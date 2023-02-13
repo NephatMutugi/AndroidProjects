@@ -81,7 +81,7 @@ public class FlagServiceImpl implements FlagService {
 
         try {
             Country country = countryRepository.findCountryByCountryName(countryName);
-            flagRepository.deleteFlagByCountryContaining(country);
+            flagRepository.deleteFlagByCountry(country);
             return new ResponseEntity<>(new ResponsePayload("200", "Deleted " + countryName), HttpStatus.OK);
         } catch (Exception e) {
             log.error("ERROR WHILE DELETING COUNTRY:: {}", e.getMessage());
@@ -98,7 +98,7 @@ public class FlagServiceImpl implements FlagService {
             if (flag.getId() != null) {
                 return new ResponseEntity<>(new ResponsePayload(
                         "200",
-                        "Country: " + imageUrl + " created with flag: " + flag.getImageUrl()
+                        "Country: " + country.getCountryName() + " created with flag: " + flag.getImageUrl()
                 ), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(new ResponsePayload(
