@@ -51,7 +51,7 @@ public class FlagServiceImpl implements FlagService {
         String imageUrl = requestPayload.getBusinessKeyValue();
         Country country = countryRepository.findCountryByCountryName(countryName);
 
-        if (country != null){
+        if (country != null) {
             return saveFlag(imageUrl, country);
         }
         return new ResponseEntity<>(new ResponsePayload(
@@ -60,16 +60,27 @@ public class FlagServiceImpl implements FlagService {
         ), HttpStatus.OK);
     }
 
+
     @Override
     public ResponseEntity<ResponsePayload> deleteFlag(String countryName) {
-        return null;
+
+        try {
+            Country country = countryRepository.findCountryByCountryName(countryName);
+            flagRepository.deleteFlagByCountryContaining(country);
+            return new ResponseEntity<>(new ResponsePayload("200", "Deleted " + countryName), HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("ERROR WHILE DELETING COUNTRY:: {}", e.getMessage());
+            return new ResponseEntity<>(new ResponsePayload("400", "Failed to delete " + countryName), HttpStatus.OK);
+        }
+
     }
 
-    private ResponseEntity<ResponsePayload> saveFlag(String imageUrl, Country country){
+
+    private ResponseEntity<ResponsePayload> saveFlag(String imageUrl, Country country) {
         try {
             Flag flag = flagRepository.save(new Flag(imageUrl, country));
 
-            if (flag.getId()!=null){
+            if (flag.getId() != null) {
                 return new ResponseEntity<>(new ResponsePayload(
                         "200",
                         "Country: " + imageUrl + " created with flag: " + flag.getImageUrl()
@@ -80,7 +91,7 @@ public class FlagServiceImpl implements FlagService {
                         "Failed to create flag: " + imageUrl
                 ), HttpStatus.OK);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error("CREATE FLAG {}: {}", imageUrl, e.getMessage());
             return new ResponseEntity<>(new ResponsePayload("400",
                     e.getMessage()), HttpStatus.OK);
