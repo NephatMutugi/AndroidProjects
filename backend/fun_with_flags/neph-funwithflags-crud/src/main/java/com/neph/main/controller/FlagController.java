@@ -4,6 +4,7 @@ import com.neph.main.entity.Flag;
 import com.neph.main.model.RequestPayload;
 import com.neph.main.model.ResponsePayload;
 import com.neph.main.service.FlagService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,10 @@ public class FlagController {
     @PostMapping(value = "delete", produces = {"application/json"}, consumes = {"application/json"})
     public ResponseEntity<ResponsePayload> deleteFlag(@RequestBody RequestPayload requestPayload){
         return flagService.deleteFlag(requestPayload);
+    }
+
+    @PostMapping(value="test", produces = {"application/json"}, consumes = {"application/json"})
+    public ResponseEntity<?> simulateNotAccepted(@RequestBody RequestPayload requestPayload){
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 }

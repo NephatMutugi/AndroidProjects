@@ -2,12 +2,12 @@ server:
     port: 9090
 spring:
     datasource:
-        password: Br00k51d3
-        url: jdbc:mysql://localhost:3306/fun_with_flags
-        username: root
+        password: nephatmuchiri
+        url: jdbc:postgresql://localhost:5432/fun_with_flags
+        username: nephatmuchiri
     jpa:
         hibernate:
             ddl-auto: update
         properties:
             hibernate:
-                dialect: org.hibernate.dialect.MySQL8Dialect
+                dialect: org.hibernate.dialect.PostgreSQLDialect
